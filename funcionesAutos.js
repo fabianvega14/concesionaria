@@ -1,4 +1,5 @@
 
+const autos = require('./listaAutos');
 const funcAutos = require('./listaAutos')
 
 
@@ -34,15 +35,29 @@ let concesionaria = {
       },
           
     totalDeVentas: function(){
-        const ventas = this.autos;
-        let auto = ventas.filter(lista => lista.vendido===true);
-        if (auto!=[]) {
+        const auto = this.listaDeVentas();
+        let long = auto.length;
+        switch (long) {
+        case (long>=2):  
         return auto.reduce(function (acum, num){
-          return acum.precio + num.precio;
-        })} else return 0
+          return acum + num});
+        break;
+
+        case (long===1):
+          return auto;
+        break;
+        
+        default:
+          return auto;
+        break  
+               }
+      },
       
-        },
-    }
+    
+  }
+          
+      
+    
 
     //console.log(concesionaria.venderAuto('APL123'));
     //console.log(concesionaria.buscarAuto("APL123"));
@@ -52,3 +67,4 @@ let concesionaria = {
     //console.log(concesionaria.listaDeVentas());
     console.log(concesionaria.totalDeVentas());
     //console.log(concesionaria.autosParaLaVenta());
+    //console.log(autos.length);
