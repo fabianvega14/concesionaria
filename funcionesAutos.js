@@ -43,7 +43,7 @@ let concesionaria = {
           return acum + num});
         break;
 
-        case (long===1):
+        case (long==1):
           return auto;
         break;
         
