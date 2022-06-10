@@ -36,25 +36,32 @@ let concesionaria = {
           
     totalDeVentas: function(){
         const auto = this.listaDeVentas();
-        let long = auto.length;
-        switch (long) {
-        case (long>=2):  
-        return auto.reduce(function (acum, num){
-          return acum + num});
-        break;
-
-        case (long==1):
-          return auto;
-        break;
-        
-        default:
-          return auto;
-        break  
-               }
+        if (auto.length===0) {return 0} else
+        return auto.reduce(function(num, acum) {return num + acum});
       },
-      
+
+
     
-  }
+           
+    puedeComprar: function (patente, persona = {
+      nombre: "Juan",
+      capacidadDePagoEnCuotas: 20000,
+      capacidadDePagoTotal: 100000
+    }) {
+
+      let autoDisponible = this.buscarAuto(patente)
+
+      if (autoDisponible.length > 0) {
+        if (((persona.capacidadDePagoTotal) >= (autoDisponible.precio)) && ((persona.capacidadDePagoEnCuotas >= (autoDisponible.precio / autoDisponible.cuotas)))) {
+          return true;
+        }
+
+      }
+
+
+    },
+
+}
           
       
     
@@ -65,6 +72,7 @@ let concesionaria = {
     //console.log(concesionaria.autosNuevos());
     //console.log(concesionaria.autos);
     //console.log(concesionaria.listaDeVentas());
-    console.log(concesionaria.totalDeVentas());
+    //console.log(concesionaria.totalDeVentas());
     //console.log(concesionaria.autosParaLaVenta());
     //console.log(autos.length);
+    console.log(concesionaria.puedeComprar('JJK116', ));
